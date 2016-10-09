@@ -1,0 +1,18 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+
+class DatabaseSeeder extends Seeder {
+
+	public function run()
+	{
+		Model::unguard();
+
+		$this->call('ZoneTableSeeder');
+		$this->command->info('Zone table seeded!');
+
+		$this->call('ConfigurationTableSeeder');
+		$this->command->info('Configuration table seeded!');
+	}
+}
