@@ -7,6 +7,16 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+/* print_r("SERVER<br/>"); */
+/* print_r($_SERVER); */
+/* if( in_array('mod_rewrite', apache_get_modules())) { */
+/*     print("<br/>MOD_REWRITE"); */
+/* } */
+/* else { */
+/*     print("<br/>Nonnnnn, pas de MOD_REWRITE"); */
+/* } */
+//phpinfo();
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

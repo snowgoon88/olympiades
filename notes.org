@@ -1,0 +1,29 @@
+== Olympiades à Atlantis ==
+
+* [0/7] Dev
+** (PB) : revenir à un joueur précis...
+** TODO Conf: Check CISEAUX vs CISEAU
+** TODO Conf: Entrer la Zone
+** TODO Conf: Entrer le ShiFuMi
+** TODO [/] Authentification
+** TODO [/] Use Cases
+*** Login
+*** Changer mot de passe
+*** Logout
+*** Create Team
+*** Edit Team
+*** See Championnat
+*** See Games
+*** Play Game
+*** Show Game details
+** TODO [/] Admin
+*** Create Game
+*** Create User
+** TODO [/] Backdoor
+*** route avec _snow/$KEY/
+* Info
+** Set on shared server
+http://blog.kongnir.com/2015/09/25/setting-up-laravel-5-on-shared-hosting-server/
+
+
+
