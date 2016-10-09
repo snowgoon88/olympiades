@@ -476,10 +476,18 @@ class GameController extends Controller
         $game = Game::findOrFail($gid);
 
         $game->status = 'FIRST';
-        $game->conf11->delete(); $game->first1 = 0;
-        $game->conf21->delete(); $game->first2 = 0;
-        $game->conf12->delete(); $game->second1 = 0;
-        $game->conf22->delete(); $game->second2 = 0;
+        if( $game->conf11 != 0 ) {
+            $game->conf11->delete(); $game->first1 = 0;
+        }
+        if( $game->conf21 != 0 ) {
+            $game->conf21->delete(); $game->first2 = 0;
+        }
+        if( $game->conf12 != 0 ) {
+            $game->conf12->delete(); $game->second1 = 0;
+        }
+        if( $game->conf22 != 0 ) {
+            $game->conf22->delete(); $game->second2 = 0;
+        }
         $game->score1 = 0;
         $game->score2 = 0;
         $game->msg_status = "-";

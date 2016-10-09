@@ -4,10 +4,11 @@
   <div class="zone">
       <h3> Zone Gauche</h3>
       <div class="form-group">
-	<span>DEF:{!! Form::number( 'nbdefG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
+	<span>DEF: {!! Form::number( 'nbdefG', 0, ['max' => 10, 'min' => 0, 'style' => 'width: 2em']) !!}</span><br/>
 	<span>ATT:{!! Form::number( 'nbattG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmG', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
       </div>
   </div>
   <div class="zone">
