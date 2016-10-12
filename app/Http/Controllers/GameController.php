@@ -39,12 +39,12 @@ class GameController extends Controller
     }
     public function shifumi( $choice1, $choice2 )
     {
-        if( ($choice1 == 'PAPIER' and $choice2 == 'FEUILLE') or
-        ($choice1 == 'FEUILLE' and $choice2 == 'PIERRE') or
+        if( ($choice1 == 'PAPIER' and $choice2 == 'PIERRE') or
+        ($choice1 == 'CISEAUX' and $choice2 == 'PIERRE') or
         ($choice1 == 'PIERRE' and $choice2 == 'CISEAUX'))
             return "win1";
-        if( ($choice2 == 'PAPIER' and $choice1 == 'FEUILLE') or
-        ($choice2 == 'FEUILLE' and $choice1 == 'PIERRE') or
+        if( ($choice2 == 'PAPIER' and $choice1 == 'PIERRE') or
+        ($choice2 == 'CISEAUX' and $choice1 == 'PIERRE') or
         ($choice2 == 'PIERRE' and $choice1 == 'CISEAUX'))
             return "win2";
         return "draw";
@@ -52,12 +52,12 @@ class GameController extends Controller
     /** Return an integer value */
     public function diff_shifumi( $choice1, $choice2 )
     {
-        if( ($choice1 == 'PAPIER' and $choice2 == 'FEUILLE') or
-        ($choice1 == 'FEUILLE' and $choice2 == 'PIERRE') or
+        if( ($choice1 == 'PAPIER' and $choice2 == 'PIERRE') or
+        ($choice1 == 'CISEAUX' and $choice2 == 'PIERRE') or
         ($choice1 == 'PIERRE' and $choice2 == 'CISEAUX'))
             return self::VAL_SHIFUMI;
-        if( ($choice2 == 'PAPIER' and $choice1 == 'FEUILLE') or
-        ($choice2 == 'FEUILLE' and $choice1 == 'PIERRE') or
+        if( ($choice2 == 'PAPIER' and $choice1 == 'PIERRE') or
+        ($choice2 == 'CISEAUX' and $choice1 == 'PIERRE') or
         ($choice2 == 'PIERRE' and $choice1 == 'CISEAUX'))
             return -self::VAL_SHIFUMI;
         return 0;
@@ -189,31 +189,33 @@ class GameController extends Controller
         $next_phase = 'phase'.($id_att+1);
         $msg .= "Au final, la valeur d'attaque vaut ".$diff.". ";
         if( $diff > 0 ) {
-            $msg .= " La phase a été gagnée par ".$name_p1;
             if( $pos == "win1" ) {
+                $msg .= " La phase a été gagnée par ".$name_p1;
                 $msg .= " qui marque un POINT.<br>";
                 $score_p1 += 1;
                 $res = "win2";
                 $next_conf .= '2';
             }
             else {
-                $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
-                $res = "win1";
-                $next_conf .= '1';
-            }
-        }              
-        else if( $diff < 0 ) {
-            $msg .= " La phase a été gagnée par ".$name_p2;
-            if( $pos == "win2" ) {
+                $msg .= " La phase a été gagnée par ".$name_p2;
                 $msg .= " qui marque un POINT.<br>";
                 $score_p2 += 1;
                 $res = "win1";
                 $next_conf .= '1';
             }
-            else {
+        }              
+        else if( $diff < 0 ) {
+            if( $pos == "win1" ) {
+                $msg .= " La phase a été gagnée par ".$name_p2;
                 $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
                 $res = "win2";
                 $next_conf .= '2';
+            }
+            else {
+                $msg .= " La phase a été gagnée par ".$name_p1;
+                $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
+                $res = "win1";
+                $next_conf .= '1';
             }
         }
         else {
@@ -348,31 +350,34 @@ class GameController extends Controller
         $next_phase = 'phase'.($id_att+1);
         $msg .= "Au final, la valeur d'attaque vaut ".$diff.". ";
         if( $diff > 0 ) {
-            $msg .= " La phase a été gagnée par ".$name_p1;
             if( $pos == "win1" ) {
+                $msg .= " La phase a été gagnée par ".$name_p1;
                 $msg .= " qui marque un POINT.<br>";
                 $score_p1 += 1;
                 $res = "win2";
                 $next_conf .= '2';
             }
             else {
-                $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
+                $msg .= " La phase a été gagnée par ".$name_p2;
+                $msg .= " qui marque un POINT.<br>";
+                $score_p2 += 1;
+                //$msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
                 $res = "win1";
                 $next_conf .= '1';
             }
         }              
         else if( $diff < 0 ) {
-            $msg .= " La phase a été gagnée par ".$name_p2;
-            if( $pos == "win2" ) {
-                $msg .= " qui marque un POINT.<br>";
-                $score_p2 += 1;
-                $res = "win1";
-                $next_conf .= '1';
-            }
-            else {
+            if( $pos == "win1" ) {
+                $msg .= " La phase a été gagnée par ".$name_p2;
                 $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
                 $res = "win2";
                 $next_conf .= '2';
+            }
+            else {
+                $msg .= " La phase a été gagnée par ".$name_p1;
+                $msg .= " qui prend le contrôle de la balle pour la prochaine phase.<br/>";
+                $res = "win1";
+                $next_conf .= '1';
             }
         }
         else {
@@ -380,7 +385,7 @@ class GameController extends Controller
             if( $pos == "win1" ) {
                 $msg .= $name_p1." garde la balle<br/>";
                 $next_conf .= '1';
-                $res = $pos;
+                $res= $pos;
             }
             else {
                 $msg .= $name_p2." garde la balle<br/>";
@@ -388,7 +393,7 @@ class GameController extends Controller
                 $res= $pos;
             }
         }
-        $msg .= "SCORE FINAL: ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2."<br/>";
+        $msg .= "SCORE: ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2."<br/>";
         if( $id_att<4 ) {
         $zone = $$next_conf->$next_phase;
         $msg .= "La zone sera donnée par ".$next_conf."->".$next_phase.", soit ".$zone."<br/>";

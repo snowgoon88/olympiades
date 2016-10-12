@@ -12,7 +12,7 @@ class Configuration extends Model
         'nbdefC', 'nbattC', 'nbquartC', 'nbpassC',
         'nbdefD', 'nbattD', 'nbquartD', 'nbpassD',
         'phase2', 'phase3', 'phase4',
-        'sfm1', 'sfm2', 'sfm3', 'sfm4'
+        'sfmG', 'sfmC', 'sfmD'
     ];
 
     /** Relationships */

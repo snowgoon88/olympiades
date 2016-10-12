@@ -16,7 +16,7 @@
 	<span>ATT:{!! Form::number( 'nbattG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassG', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
-	<span>Tactique: {!! Form::select('sfmG', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmG', ['PIERRE' => 'PIERRE', 'PAPIER' => 'PAPIER', 'CISEAUX' => 'CISEAUX'], 'S') !!}</span><br/>
       </div>
   </div>
   <div class="zone">
@@ -26,7 +26,7 @@
       <span>ATT:{!! Form::number( 'nbattC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
-	<span>Tactique: {!! Form::select('sfmC', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmC', ['PIERRE' => 'PIERRE', 'PPAPIER' => 'PAPIER', 'CISEAUX' => 'CISEAUX'], 'PIERRE') !!}</span><br/>
     </div>
   </div>
   <div class="zone">
@@ -36,14 +36,14 @@
       <span>ATT:{!! Form::number( 'nbattD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
-	<span>Tactique: {!! Form::select('sfmD', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmD', ['PIERRE' => 'PIERRE', 'PAPIER' => 'PAPIER', 'CISEAUX' => 'CISEAUX'], 'PIERRE') !!}</span><br/>
     </div>
   </div>
   <div>
     <h3>Phases d'attaque</h3>
-    <span>Zone ATK phase 2 : {!! Form::select('phase2', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
-    <span>Zone ATK phase 3 : {!! Form::select('phase3', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
-    <span>Zone ATK phase 4 : {!! Form::select('phase4', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
+    <span>Zone ATK phase 2 : {!! Form::select('phase2', ['GAUCHE' => 'GAUCHE', 'CENTRE' => 'CENTRE', 'DROITE' => 'DROITE'], 'CENTRE') !!}</span><br/>
+    <span>Zone ATK phase 3 : {!! Form::select('phase3', ['GAUCHE' => 'GAUCHE', 'CENTRE' => 'CENTRE', 'DROITE' => 'DROITE'], 'CENTRE') !!}</span><br/>
+    <span>Zone ATK phase 4 : {!! Form::select('phase4', ['GAUCHE' => 'GAUCHE', 'CENTRE' => 'CENTRE', 'DROITE' => 'DROITE'], 'CENTRE') !!}</span><br/>
   </div>
   {!! Form::submit('Envoyer') !!}
   {!! Form::close() !!}
