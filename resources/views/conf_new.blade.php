@@ -1,4 +1,12 @@
 <div>
+  @if( $errors->any() )
+  <div style="color:red">
+    <h3>Error</h3>
+    @foreach ($errors->all() as $message)
+    <p>{{ $message }}<p/>
+    @endforeach
+  </div>
+  @endif
   {!! Form::open( ['action' => ['GameController@add_configuration', $player, $game], 'class' => 'form_vertical'] ) !!}
 
   <div class="zone">
@@ -18,6 +26,7 @@
       <span>ATT:{!! Form::number( 'nbattC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassC', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmC', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
     </div>
   </div>
   <div class="zone">
@@ -27,7 +36,14 @@
       <span>ATT:{!! Form::number( 'nbattD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>3/4:{!! Form::number( 'nbquartD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
 	<span>PASS:{!! Form::number( 'nbpassD', 0, ['max' => 10, 'min' => 0]) !!}</span><br/>
+	<span>Tactique: {!! Form::select('sfmD', ['S' => 'PIERRE', 'P' => 'PAPIER', 'C' => 'CISEAUX'], 'S') !!}</span><br/>
     </div>
+  </div>
+  <div>
+    <h3>Phases d'attaque</h3>
+    <span>Zone ATK phase 2 : {!! Form::select('phase2', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
+    <span>Zone ATK phase 3 : {!! Form::select('phase3', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
+    <span>Zone ATK phase 4 : {!! Form::select('phase4', ['G' => 'GAUCHE', 'C' => 'CENTRE', 'D' => 'DROITE'], 'C') !!}</span><br/>
   </div>
   {!! Form::submit('Envoyer') !!}
   {!! Form::close() !!}

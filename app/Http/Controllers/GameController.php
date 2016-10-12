@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Configuration;
 use App\User;
 use App\Game;
+//use Validator;
+use App\Http\Requests\ConfPostRequest;
 
 class GameController extends Controller
 {
@@ -414,10 +416,28 @@ class GameController extends Controller
         Debugbar::info( "play_game with pos=".$pos1 );
         return view('game_play', ['game' => $game, 'player'=>$player, 'pos1' => $pos1]);
     }
-    
-    /** Create a new configuration for a player */
-    public function add_configuration(Request $request, $pid, $gid)
+
+    /** Check rules for a team */
+    public function check_configuration(Request $request)
     {
+        $nb_pass = $request->nbpassG + $request->nbpassC + $request->nbpassD;
+        if( $nb_pass > 2 ) {
+            $validator->errors()->add('nbpass', 'On n\'a droit qu\'à un seul passeur');
+        }
+        $nb_players = $request->nbdefG + $request->nbattG + $request->nbquartG
+            + $request->nbdefC + $request->nbattC + $request->nbquartC
+            + $request->nbdefD + $request->nbattD + $request->nbquartD;
+        $nb_player += $nb_pass;
+        if( $nb_player != 10 ) {
+            $validator->errors()->add('nbplayer', 'Il faut 10 joueurs dans l\'équipe');
+        }
+        
+    }
+    /** Create a new configuration for a player */
+    public function add_configuration(ConfPostRequest $request, $pid, $gid)
+    {
+        // Validation is done inside de ConfPostRequest
+        
         /* $conf = new Configuration(); */
         /* $conf->nbdefG = $request->nbdefG; */
         /* $conf->nbattG = $request->nbattG; */
@@ -425,6 +445,17 @@ class GameController extends Controller
         /* $conf->nbdefC = $request->nbdefC; */
         /* $conf->nbattC = $request->nbattC;x */
 
+        /* $validator = Validator::make($request->all(), []); */
+        /* $validator->after( function($validator) { */
+        /*     $this->check_configuration($request); */
+        /* }); */
+        /* if ($validator->fails()) { */
+        /*     return redirect('post/create') */
+        /*                 ->withErrors($validator) */
+        /*                 ->withInput(); */
+        /* } */
+
+        // TO DEBUG
         $conf = Configuration::create($request->all());
         Debugbar::info( "created conf id=".$conf->id );
         
@@ -458,7 +489,8 @@ class GameController extends Controller
             and $game->second1 != 0 and $game->second2 != 0 ) {
             $this->run_second_period( $game->id );
         }
-        
+
+        //DEBUG return;
         return redirect()->action( 'GameController@show_game', ['pid'=>$player->id, 'gid'=>$game->id]);
         //return 'Conf id='.$conf->id.' created';
     }
@@ -476,16 +508,16 @@ class GameController extends Controller
         $game = Game::findOrFail($gid);
 
         $game->status = 'FIRST';
-        if( $game->conf11 != 0 ) {
+        if( $game->first1 != 0 ) {
             $game->conf11->delete(); $game->first1 = 0;
         }
-        if( $game->conf21 != 0 ) {
+        if( $game->first2 != 0 ) {
             $game->conf21->delete(); $game->first2 = 0;
         }
-        if( $game->conf12 != 0 ) {
+        if( $game->second1 != 0 ) {
             $game->conf12->delete(); $game->second1 = 0;
         }
-        if( $game->conf22 != 0 ) {
+        if( $game->second2 != 0 ) {
             $game->conf22->delete(); $game->second2 = 0;
         }
         $game->score1 = 0;
@@ -494,7 +526,7 @@ class GameController extends Controller
         $game->msg_result1 = "Première mi-temps";
         $game->msg_result2 = "Deuxième mi-temps";
         $game->save();
-        return redirect()->action( 'GameController@list_game', ['pid'=>$player->id, 'gid'=>$game->id]);
+        return redirect()->action( 'GameController@all_game', []);
     }
 
     public function list_game($pid)
@@ -502,6 +534,12 @@ class GameController extends Controller
         $player = User::findOrFail($pid);
         $games = $player->getGames();
         return view('game_list', ['player' => $player, 'games' => $games]);
+    }
+
+    public function all_game()
+    {
+        $games = Game::all();
+        return view('game_all', ['games' => $games]);
     }
     
      

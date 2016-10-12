@@ -12,7 +12,8 @@
 
   <body class="container">
     <h2>Partie {{ $game->id }} : {{ $game->player1->name}} vs {{$game->player2->name}}</h2>
-    <div>{{ link_to_action('GameController@list_game', 'Retour à la liste des parties', ['pid'=>$player->id]) }}</div>
+    <p>L'état d'une partie. On ne montre les actions des mi-temps que quand elles sont résolues.</p>
+    <div>{{ link_to_action('GameController@all_game', 'Retour à la liste des parties')}}</div>
     <div>
       Status : {{$game->msg_status}} ({{$game->status}})
     </div>

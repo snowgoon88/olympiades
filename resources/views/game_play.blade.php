@@ -18,6 +18,8 @@
       {{ $game->player1->name }}
       @endif
     </h2>
+    <p>Ici, un joueur peut jouer (choisir une configuration pour son équipe) ou voir qu'il a déjà fait ses choix et qu'on attend l'autre joueur. Pour l'instant, je vérifie juste qu'une équipe a, au plus, un passeur et qu'elle est composée de 10 joueurs. Pa mis en place de ne changer que 2 gugusses à la mi-temps.</p>
+    <div>{{ link_to_action('GameController@all_game', 'Retour à la liste des parties')}}</div>
     <div>
       Status : {{$game->msg_status}} ({{$game->status}})
     </div>

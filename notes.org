@@ -1,7 +1,11 @@
 == Olympiades à Atlantis ==
 
-* [0/7] Dev
+* [0/9] Dev
 ** (PB) : revenir à un joueur précis...
+** TODO Request Validation
+Enlever dans GameController
+Créer un Request avec post vaidation en s'aidant de https://laracasts.com/discuss/channels/general-discussion/l5-how-to-use-after-method-on-form-request
+Gérer dans la view
 ** TODO Faire tourner sur serveur externe
 ** TODO Conf: Check CISEAUX vs CISEAU
 ** TODO Conf: Entrer la Zone

@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 /** Game */
+Route::get( 'allgame', 'GameController@all_game');
+    
 Route::get( 'listgame/{pid}', 'GameController@list_game')
     ->where('pid', '[0-9]+');
 
