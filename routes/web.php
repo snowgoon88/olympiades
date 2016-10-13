@@ -87,5 +87,10 @@ Route::post('_snow/167ACE845', 'Auth\RegisterController@register');
         /* $this->post('password/reset', 'Auth\ResetPasswordController@reset'); */
 Auth::routes();
 
+Route::get('editteam', 'TeamController@showTeamForm')
+    ->middleware('auth');
+Route::post('editteam', 'TeamController@editTeam')
+    ->middleware('auth');
+
 Route::get('/home', 'HomeController@index');
 
