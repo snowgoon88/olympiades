@@ -25,7 +25,10 @@ Gérer dans la view
 ** DONE Conf: Check CISEAUX vs CISEAU
 ** DONE Conf: Entrer la Zone
 ** DONE Conf: Entrer le ShiFuMi
-** TODO [/] Authentification
+** TODO [2/3] Authentification
+*** DONE Creation avec backdoor _snow/167ACE845
+*** DONE Login
+*** TODO partir de /register pour faire /password/change
 ** TODO [/] Use Cases
 *** Login
 *** Changer mot de passe

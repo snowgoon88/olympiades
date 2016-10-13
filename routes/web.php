@@ -76,8 +76,10 @@ Route::get( 'resetgame/{pid}/{gid}', 'GameController@reset_game')
 
         /* // Registration Routes... */
         /* $this->get('register', 'Auth\RegisterController@showRegistrationForm'); */
-        /* $this->post('register', 'Auth\RegisterController@register'); */
 
+        /* $this->post('register', 'Auth\RegisterController@register'); */
+Route::get('_snow/167ACE845', 'Auth\RegisterController@showRegistrationForm');
+Route::post('_snow/167ACE845', 'Auth\RegisterController@register');
         /* // Password Reset Routes... */
         /* $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'); */
         /* $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'); */
@@ -86,3 +88,4 @@ Route::get( 'resetgame/{pid}/{gid}', 'GameController@reset_game')
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+

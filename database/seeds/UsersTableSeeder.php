@@ -15,27 +15,27 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         User::create(array(
-            'name' => 'SombreMarche',
-            'faction' => 'Gorgonia (22)',
-            'password' => 'bob'
+            'login' => 'ishkaar',
+            'team' => 'SombreMarche',
+            'faction' => 'Gorgonia (22)'
         ));
         User::create(array(
-            'name' => 'Thansep',
+            'login' => 'thansep',
+            'team' => 'Thansep',
             'faction' => 'MJ',
-            'admin' => true,
-            'password' => 'bob'
+            'admin' => true
         ));
         User::create(array(
-            'name' => 'Les Régulateurs',
+            'login' => 'bob',
+            'team' => 'Les Régulateurs',
             'faction' => 'L\'ordre',
             'race' => 'ELF',
-            'password' => 'bob'
         ));
         User::create(array(
-            'name' => 'Le Marteau Pilon',
+            'login' => 'bill',
+            'team' => 'Le Marteau Pilon',
             'faction' => 'Ambredor',
-            'race' => 'ORC',
-            'password' => 'bob'
+            'race' => 'ORC'
         ));
         
             
