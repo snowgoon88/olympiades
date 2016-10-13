@@ -11,6 +11,7 @@ use App\User;
 use App\Game;
 //use Validator;
 use App\Http\Requests\ConfPostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -411,9 +412,10 @@ class GameController extends Controller
 
     
     /** Display a game for a given player */
-    public function play_game($pid,$gid)
+    public function play_game($gid)
     {
-        $player = User::findOrFail($pid);
+        //$player = User::findOrFail($pid);
+        $player = Auth::user();
         $game = Game::findOrFail($gid);
         $pos1 = ($game->player1_id == $player->id);
         Debugbar::info( "play_game with player->id=".$player->id );
@@ -500,9 +502,15 @@ class GameController extends Controller
         //return 'Conf id='.$conf->id.' created';
     }
 
-    public function show_game($pid,$gid)
+    public function show_game_admin($pid,$gid)
     {
         $player = User::findOrFail($pid);
+        $game = Game::findOrFail($gid);
+        return view('game_show', ['game' => $game, 'player'=>$player]);
+    }
+    public function show_game($gid)
+    {
+        $player = Auth::user();
         $game = Game::findOrFail($gid);
         return view('game_show', ['game' => $game, 'player'=>$player]);
     }

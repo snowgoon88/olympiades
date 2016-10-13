@@ -16,13 +16,16 @@ Route::get('/', function () {
 });
 
 /** Game */
-Route::get( 'allgame', 'GameController@all_game');
+Route::get( 'allgame', 'GameController@all_game')
+    ->middleware('auth');
     
 Route::get( 'listgame/{pid}', 'GameController@list_game')
     ->where('pid', '[0-9]+');
 
-Route::get( 'playgame/{pid}/{gid}', 'GameController@play_game')
-    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+/* Route::get( 'playgame/{pid}/{gid}', 'GameController@play_game') */
+/*     ->where('pid', '[0-9]+')->where('gid', '[0-9]+'); */
+Route::get( 'playgame/{gid}', 'GameController@play_game')
+    ->where('gid', '[0-9]+')->middleware('auth');
 
 Route::post( 'addconf/{pid}/{gid}', 'GameController@add_configuration' )
     ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
@@ -30,8 +33,10 @@ Route::post( 'addconf/{pid}/{gid}', 'GameController@add_configuration' )
 Route::get( 'run/{gid}', 'GameController@run_first_period' )
     ->where('gid', '[0-9]+');
 
-Route::get( 'showgame/{pid}/{gid}', 'GameController@show_game')
-    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+//Route::get( 'showgame/{pid}/{gid}', 'GameController@show_game_admin')
+//    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+Route::get( 'showgame/{gid}', 'GameController@show_game')
+    ->where('gid', '[0-9]+')->middleware('auth');
 
 Route::get( 'resetgame/{pid}/{gid}', 'GameController@reset_game')
     ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
