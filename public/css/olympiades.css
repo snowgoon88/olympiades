@@ -1,0 +1,16 @@
+div.background {
+	background-image: url("../Images/BloodBowl2.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+	min-height: 1080px;
+}
+div.transbox {
+	background-color: #ffffff;
+    opacity: 0.85;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox div {
+	color: #000000;
+}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container transbox">
   @include('menu')
   
   <div class="row">

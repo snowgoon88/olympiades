@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container transbox">
   @include('menu')
   
-
-  <h3>Partie {{ $game->id }} : {{ $game->player1->team}} ({{$game->player1->faction}}) vs {{$game->player2->team}} ({{$game->player2->faction}})</h3>
+  <div class="row">
+	<h3>Partie {{ $game->id }} : {{ $game->player1->team}} ({{$game->player1->faction}}) vs {{$game->player2->team}} ({{$game->player2->faction}})</h3>
+  </div>
   <div class="row">
 	<div class="col-md-12">
 	  <strong>Status</strong> : {{$game->msg_status}} ({{$game->status}})
