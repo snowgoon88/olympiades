@@ -30,7 +30,7 @@ Gérer dans la view
 *** DONE Login
 *** DONE partir de /register pour faire /password/change
 *** TODO Effacer les anciennes routes
-** TODO [9/10] Use Cases
+** TODO [8/10] Use Cases
 *** DONE route de base /
 *** DONE Login
 *** DONE Changer mot de passe
@@ -39,7 +39,8 @@ Gérer dans la view
 *** DONE Edit Team
 *** DONE See Championnat
 *** DONE See Games
-*** DONE Play Game
+*** TODO Play Game
+**** TODO Faire les rapports
 *** DONE Show Game details
 ** TODO [0/1] Admin
 *** TODO Create Game
