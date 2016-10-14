@@ -28,7 +28,7 @@ Route::get( 'playgame/{gid}', 'GameController@play_game')
     ->where('gid', '[0-9]+')->middleware('auth');
 
 Route::post( 'addconf/{pid}/{gid}', 'GameController@add_configuration' )
-    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+    ->where('pid', '[0-9]+')->where('gid', '[0-9]+')->middleware('auth');
 
 Route::get( 'run/{gid}', 'GameController@run_first_period' )
     ->where('gid', '[0-9]+');

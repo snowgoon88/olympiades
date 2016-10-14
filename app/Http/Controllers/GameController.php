@@ -239,7 +239,7 @@ class GameController extends Controller
         }
         }
 
-        $game->msg_status = "SCORE : ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2;
+        $game->msg_status = "Mi-temps : ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2;
         $game->msg_result1 = $msg;
         $game->status = 'SECOND';
         $game->score1 = $score_p1;
@@ -424,43 +424,11 @@ class GameController extends Controller
         return view('game_play', ['game' => $game, 'player'=>$player, 'pos1' => $pos1]);
     }
 
-    /** Check rules for a team */
-    public function check_configuration(Request $request)
-    {
-        $nb_pass = $request->nbpassG + $request->nbpassC + $request->nbpassD;
-        if( $nb_pass > 2 ) {
-            $validator->errors()->add('nbpass', 'On n\'a droit qu\'à un seul passeur');
-        }
-        $nb_players = $request->nbdefG + $request->nbattG + $request->nbquartG
-            + $request->nbdefC + $request->nbattC + $request->nbquartC
-            + $request->nbdefD + $request->nbattD + $request->nbquartD;
-        $nb_player += $nb_pass;
-        if( $nb_player != 10 ) {
-            $validator->errors()->add('nbplayer', 'Il faut 10 joueurs dans l\'équipe');
-        }
-        
-    }
     /** Create a new configuration for a player */
     public function add_configuration(ConfPostRequest $request, $pid, $gid)
     {
-        // Validation is done inside de ConfPostRequest
+        // Validation is done inside ConfPostRequest
         
-        /* $conf = new Configuration(); */
-        /* $conf->nbdefG = $request->nbdefG; */
-        /* $conf->nbattG = $request->nbattG; */
-
-        /* $conf->nbdefC = $request->nbdefC; */
-        /* $conf->nbattC = $request->nbattC;x */
-
-        /* $validator = Validator::make($request->all(), []); */
-        /* $validator->after( function($validator) { */
-        /*     $this->check_configuration($request); */
-        /* }); */
-        /* if ($validator->fails()) { */
-        /*     return redirect('post/create') */
-        /*                 ->withErrors($validator) */
-        /*                 ->withInput(); */
-        /* } */
 
         // TO DEBUG
         $conf = Configuration::create($request->all());
@@ -472,18 +440,22 @@ class GameController extends Controller
             if( $game->first1 == 0 ) {
                 // First Half
                 $game->first1 = $conf->id;
+                $game->msg_status = "Première mi-temps";
             }
             else {
                 $game->second1 = $conf->id;
+                $game->msg_status = "Seconde mi-temps";
             }
         }
         else {
             if( $game->first2 == 0 ) {
                 // FIrst Half
                 $game->first2 = $conf->id;
+                $game->msg_status = "Première mi-temps";
             }
             else {
                 $game->second2 = $conf->id;
+                $game->msg_status = "Seconde mi-temps";
             }
         }
         $game->save();

@@ -1,74 +1,67 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr">
-  <head>
-    <title>Olympiades de Farenstol</title>
-  <style>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
-  </style>
-  </head>
+@extends('layouts.app')
 
-  <body class="container">
-    <h2>{{ $player->name }} joue {{$game->id}} contre
+@section('content')
+<div class="container">
+  @include('menu')
+
+  <h3>{{ $player->team }} joue partie {{$game->id}} contre
       @if( $pos1 )
-      {{ $game->player2->name }}
+      {{ $game->player2->team }}
       @else
-      {{ $game->player1->name }}
+      {{ $game->player1->team }}
       @endif
-    </h2>
-    <p>Ici, un joueur peut jouer (choisir une configuration pour son équipe) ou voir qu'il a déjà fait ses choix et qu'on attend l'autre joueur. Pour l'instant, je vérifie juste qu'une équipe a, au plus, un passeur et qu'elle est composée de 10 joueurs. Pa mis en place de ne changer que 2 gugusses à la mi-temps.</p>
-    <div>{{ link_to_action('GameController@all_game', 'Retour à la liste des parties')}}</div>
-    <div>
-      Status : {{$game->msg_status}} ({{$game->status}})
+  </h3>
+  <div class="row">
+	<div class="col-md-12">
+	  <strong>Status</strong> : {{$game->msg_status}} ({{$game->status}})
     </div>
-    @if( $game->status == 'FIRST' )
+  </div>
+
+  <div class="row">
+	<div class="col-md-12">
+  @if( $game->status == 'FIRST' )
     @if($pos1)
-    @if($game->first1 == 0)
-    <div>Il faut déterminer la configuration de la première mi-temps !</div>
-    @include('conf_new')
-    @else
-    <div>Vous avez joué, on attend {{$game->player2->name}}</div>
-    <div>FAIT configuration choisie de 1</div>
-    @include('conf_show', ['conf' => $game->conf11])
-    @endif
+      @if($game->first1 == 0)
+      <div>Il faut déterminer la configuration de la première mi-temps !</div>
+        @include('conf_new')
+      @else
+      <div>Vous avez joué, on attend {{$game->player2->team}}</div>
+        @include('conf_show', ['conf' => $game->conf11])
+      @endif
     @else
     @if($game->first2 == 0)
-    <div>Il faut déterminer la configuration de la première mi-temps !</div>
-    @include('conf_new')
+      <div>Il faut déterminer la configuration de la première mi-temps !</div>
+      @include('conf_new')
     @else
-    <div>Vous avez joué, on attend {{$game->player1->name}}</div>
-    <div>TODO configuration choisie de 2</div>
-    @include('conf_show', ['conf' => $game->conf21])
+      <div>Vous avez joué, on attend {{$game->player1->team}}</div>
+      @include('conf_show', ['conf' => $game->conf21])
     @endif
-    @endif
-    @elseif( $game->status == 'SECOND' )
+  @endif
+  
+  @elseif( $game->status == 'SECOND' )
     <div>Résultat de la première mi-temps : {{$game->msg_status}}</div>
     @if($pos1)
-    @if($game->second1 == 0)
-    <div>Il faut déterminer la configuration de la deuxième mi-temps !</div>
-    @include('conf_new')
-    @else
-    <div>Vous avez joué, on attend {{$game->player2->name}}</div>
-    <div>FAIT configuration choisie de 1</div>
-    @include('conf_show', ['conf' => $game->conf12])
-    @endif
+      @if($game->second1 == 0)
+        <div>Il faut déterminer la configuration de la deuxième mi-temps !</div>
+        @include('conf_new')
+      @else
+        <div>Vous avez joué, on attend {{$game->player2->team}}</div>
+        @include('conf_show', ['conf' => $game->conf12])
+      @endif
     @else
     @if($game->second2 == 0)
-    <div>Il faut déterminer la configuration de la deuxième mi-temps !</div>
-    @include('conf_new')
+      <div>Il faut déterminer la configuration de la deuxième mi-temps !</div>
+      @include('conf_new')
     @else
-    <div>Vous avez joué, on attend {{$game->player1->name}}</div>
-    <div>FAIT configuration choisie de 2</div>
-    @include('conf_show', ['conf' => $game->conf22])
+      <div>Vous avez joué, on attend {{$game->player1->team}}</div>
+      @include('conf_show', ['conf' => $game->conf22])
     @endif
-    @endif
-    @elseif( $game->status == 'END' )
+  @endif
+
+  @elseif( $game->status == 'END' )
     <div>Match terminé</div>
     <div>{{$game->msg_status}}</div>
-    @else
+  @else
     <div>Match pas bien initialisé ou bizarre... En parler à Thansep !</div>
-    @endif
-  </body>
-</html>
+  @endif
+@endsection

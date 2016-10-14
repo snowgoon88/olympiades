@@ -70,7 +70,7 @@ class ConfPostRequest extends FormRequest
             + $this->input('nbquartD');
         $nb_players += $nb_pass;
         if( $nb_players != 10 ) {
-            $validator->errors()->add('nbplayers', 'Il faut 10 joueurs dans l\'équipe');
+            $validator->errors()->add('nbplayers', 'Il faut 10 joueurs dans l\'équipe (et pas '.$nb_players.')');
         }
     }
 }

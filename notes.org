@@ -29,19 +29,32 @@ Gérer dans la view
 *** DONE Creation avec backdoor _snow/167ACE845
 *** DONE Login
 *** TODO partir de /register pour faire /password/change
-** TODO [5/8] Use Cases
+** TODO [6/10] Use Cases
+*** TODO route de base /
 *** DONE Login
-*** Changer mot de passe
+*** TODO Changer mot de passe
 *** DONE Logout
 *** TODO Create Team => default value quand crée user
 *** DONE Edit Team
 *** DONE See Championnat
 *** TODO See Games
-*** TODO Play Game
+*** DONE Play Game
 *** DONE Show Game details
-** TODO [/] Admin
-*** Create Game
+** TODO [0/1] Admin
+*** TODO Create Game
 *** Create User
+*** allgame and reset
+@foreach ($games as $game)
+    <div>
+      Partie n°:{{$game->id}}
+      {{$game->player1->name}} [{{$game->player1->faction}}] vs {{$game->player2->name}} [{{$game->player2->faction}}]
+      {{ link_to_action('GameController@show_game', 'Vue_P1', ['pid'=>$game->player1->id, 'gid'=>$game->id]) }} -
+      {{ link_to_action('GameController@play_game', 'Jouer_P1', ['pid'=>$game->player1->id, 'gid'=>$game->id]) }} || 
+      {{ link_to_action('GameController@show_game', 'Vue_P2', ['pid'=>$game->player2->id, 'gid'=>$game->id]) }} - 
+      {{ link_to_action('GameController@play_game', 'Jouer_P2', ['pid'=>$game->player2->id, 'gid'=>$game->id]) }} -
+      ({{ link_to_action('GameController@reset_game', 'RESET', ['pid'=>$game->player1->id, 'gid'=>$game->id]) }})
+xs    </div>
+    @endforeach
 ** DONE [/] Backdoor
 *** route avec _snow/$KEY/
 * Info

@@ -12,7 +12,7 @@
 		  <th>#</th>
 		  <th>Joueur 1</th>
 		  <th>Joueur 2</th>
-		  <th>Score</th>
+		  <th>Status</th>
 		  <th>Action</th>
 		</tr>
 		@foreach ($games as $game)
