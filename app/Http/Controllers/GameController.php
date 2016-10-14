@@ -520,7 +520,12 @@ class GameController extends Controller
         $games = $player->getGames();
         return view('game_list', ['player' => $player, 'games' => $games]);
     }
-
+    public function my_game()
+    {
+        $player = Auth::user();
+        $games = $player->getGames();
+        return view('game_list', ['player' => $player, 'games' => $games]);
+    }
     public function all_game()
     {
         $games = Game::all();

@@ -21,6 +21,8 @@ Route::get( 'allgame', 'GameController@all_game')
     
 Route::get( 'listgame/{pid}', 'GameController@list_game')
     ->where('pid', '[0-9]+');
+Route::get( 'mygame', 'GameController@my_game')
+    ->middleware('auth');
 
 /* Route::get( 'playgame/{pid}/{gid}', 'GameController@play_game') */
 /*     ->where('pid', '[0-9]+')->where('gid', '[0-9]+'); */

@@ -1,26 +1,47 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr">
-  <head>
-    <title>Olympiades de Farenstol</title>
-  <style>
-    table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    }
-  </style>
-  </head>
+@extends('layouts.app')
 
-  <body class="container">
-    <h2>Team: {{ $player->name }}</h2>
-    @foreach ($games as $game)
-    <div>
-      Partie n°:{{$game->id}}
-      {{$game->player1->name}} [{{$game->player1->faction}}] vs {{$game->player2->name}} [{{$game->player2->faction}}]
-      {{ link_to_action('GameController@show_game', 'Voir', ['pid'=>$player->id, 'gid'=>$game->id]) }} - 
-      {{ link_to_action('GameController@play_game', 'Jouer_P1', ['pid'=>$game->player1->id, 'gid'=>$game->id]) }} -
-      {{ link_to_action('GameController@play_game', 'Jouer_P2', ['pid'=>$game->player2->id, 'gid'=>$game->id]) }} -
-      {{ link_to_action('GameController@reset_game', 'RESET', ['pid'=>$player->id, 'gid'=>$game->id]) }}
-    </div>
-    @endforeach
-  </body>
-</html>
+@section('content')
+<div class="container">
+  @include('menu')
+  
+  <div class="row">
+    <h3>Team: {{ $player->name }}</h3>
+	<div class="col-md-12">
+	  <table class="table">
+		<tr>
+		  <th>#</th>
+		  <th>Joueur 1</th>
+		  <th>Joueur 2</th>
+		  <th>Status</th>
+		  <th>Action</th>
+		</tr>
+		@foreach ($games as $game)
+		<tr>
+		  <td>{{$game->id}}</td>
+		  <td>{{$game->player1->team}}</td>
+		  <td>{{$game->player2->team}}</td>
+		  <td>{{$game->msg_status}}</td>
+		  <td>
+			{{ link_to_action('GameController@show_game', $title = "Voir", ['gid'=>$game->id], ['class' => 'btn btn-default']) }}
+			@if (Auth::user()->id == $game->player1->id )
+			@if ($game->first1 == 0 or ($game->first2 > 0 and $game->second1 == 0))
+			{{ link_to_action('GameController@play_game', $title = "Jouer", ['gid'=>$game->id], ['class' => 'btn btn-primary']) }}
+			@else
+			{{ link_to_action('GameController@play_game', $title = "Jouer", ['gid'=>$game->id], ['class' => 'btn btn-info']) }}
+			@endif
+			@endif
+			@if (Auth::user()->id == $game->player2->id )
+			@if ($game->first2 == 0 or ($game->first1 > 0 and $game->second2 == 0))
+			{{ link_to_action('GameController@play_game', $title = "Jouer", ['gid'=>$game->id], ['class' => 'btn btn-primary']) }}
+			@else
+			{{ link_to_action('GameController@play_game', $title = "Jouer", ['gid'=>$game->id], ['class' => 'btn btn-info']) }}
+			@endif
+			@endif
+		  </td>
+		</tr>
+		@endforeach
+	  </table>
+	</div>
+  </div>
+</div>
+@endsection

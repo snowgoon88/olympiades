@@ -29,7 +29,7 @@ Gérer dans la view
 *** DONE Creation avec backdoor _snow/167ACE845
 *** DONE Login
 *** TODO partir de /register pour faire /password/change
-** TODO [6/10] Use Cases
+** TODO [7/10] Use Cases
 *** TODO route de base /
 *** DONE Login
 *** TODO Changer mot de passe
@@ -37,7 +37,7 @@ Gérer dans la view
 *** TODO Create Team => default value quand crée user
 *** DONE Edit Team
 *** DONE See Championnat
-*** TODO See Games
+*** DONE See Games
 *** DONE Play Game
 *** DONE Show Game details
 ** TODO [0/1] Admin
