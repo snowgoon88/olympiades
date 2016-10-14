@@ -17,9 +17,9 @@
   <div class="row">
 	<h4>Première mi-temp</h4>
 	<div class="col-md-11 col-md-offset-1">
-      <div>Choix de {{ $game->player1->name}}</div>
+      <div>Choix de {{ $game->player1->team}}</div>
       @include('conf_show', ['conf' => $game->conf11])
-      <div>Choix de {{ $game->player2->name}}</div>
+      <div>Choix de {{ $game->player2->team}}</div>
       @include('conf_show', ['conf' => $game->conf21])
       <div><strong>Détails de la manche</strong>
 		<div>{!! $game->msg_result1 !!}</div>
@@ -32,9 +32,9 @@
   <div class="row">
     <h4>Deuxième mi-temp</h4>
 	<div class="col-md-11 col-md-offset-1">
-      <div>Choix de {{ $game->player1->name}}</div>
+      <div>Choix de {{ $game->player1->team}}</div>
       @include('conf_show', ['conf' => $game->conf12])
-      <div>Choix de {{ $game->player2->name}}</div>
+      <div>Choix de {{ $game->player2->team}}</div>
       @include('conf_show', ['conf' => $game->conf22])
       <div><strong>Détails de la manche</strong>
 		<div>{!! $game->msg_result2 !!}</div>

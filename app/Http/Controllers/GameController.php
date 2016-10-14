@@ -41,11 +41,11 @@ class GameController extends Controller
     public function shifumi( $choice1, $choice2 )
     {
         if( ($choice1 == 'PAPIER' and $choice2 == 'PIERRE') or
-        ($choice1 == 'CISEAUX' and $choice2 == 'PIERRE') or
+        ($choice1 == 'CISEAUX' and $choice2 == 'PAPIER') or
         ($choice1 == 'PIERRE' and $choice2 == 'CISEAUX'))
             return "win1";
         if( ($choice2 == 'PAPIER' and $choice1 == 'PIERRE') or
-        ($choice2 == 'CISEAUX' and $choice1 == 'PIERRE') or
+        ($choice2 == 'CISEAUX' and $choice1 == 'PAPIER') or
         ($choice2 == 'PIERRE' and $choice1 == 'CISEAUX'))
             return "win2";
         return "draw";
@@ -54,11 +54,11 @@ class GameController extends Controller
     public function diff_shifumi( $choice1, $choice2 )
     {
         if( ($choice1 == 'PAPIER' and $choice2 == 'PIERRE') or
-        ($choice1 == 'CISEAUX' and $choice2 == 'PIERRE') or
+        ($choice1 == 'CISEAUX' and $choice2 == 'PAPIER') or
         ($choice1 == 'PIERRE' and $choice2 == 'CISEAUX'))
             return self::VAL_SHIFUMI;
         if( ($choice2 == 'PAPIER' and $choice1 == 'PIERRE') or
-        ($choice2 == 'CISEAUX' and $choice1 == 'PIERRE') or
+        ($choice2 == 'CISEAUX' and $choice1 == 'PAPIER') or
         ($choice2 == 'PIERRE' and $choice1 == 'CISEAUX'))
             return -self::VAL_SHIFUMI;
         return 0;
@@ -91,8 +91,8 @@ class GameController extends Controller
         $game = Game::findOrFail($gid);
         $conf_p1 = $game->conf11;
         $conf_p2 = $game->conf21;
-        $name_p1 = $game->player1->name;
-        $name_p2 = $game->player2->name;
+        $name_p1 = $game->player1->team;
+        $name_p2 = $game->player2->team;
         $val_p1 = $this->get_total( $conf_p1 );
         $val_p2 = $this->get_total( $conf_p2 );
         $score_p1 = 0;
@@ -234,8 +234,19 @@ class GameController extends Controller
         }
         $msg .= "SCORE : ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2."<br/>";
         if( $id_att<4 ) {
-        $zone = $$next_conf->$next_phase;
-        $msg .= "La zone sera donnée par ".$next_conf."->".$next_phase.", soit ".$zone."<br/>";
+            $zone = $$next_conf->$next_phase;
+            //$msg .= "La zone sera donnée par ".$next_conf."->".$next_phase.", soit ".$zone."<br/>";
+            $msg .= "La prochaine attaque sera menée dans la Zone ".$zone." de ";
+            if( $res == "win1" ) {
+                $msg .= $name_p1.".<br/>";
+            }
+            else {
+                $msg .= $name_p2.".<br/>";
+                if( $zone == 'GAUCHE' )
+                    $zone = 'DROITE';
+                else if( $zone == 'DROITE' )
+                    $zone = 'GAUCHE';
+            }
         }
         }
 
@@ -252,8 +263,8 @@ class GameController extends Controller
         $game = Game::findOrFail($gid);
         $conf_p1 = $game->conf12;
         $conf_p2 = $game->conf22;
-        $name_p1 = $game->player1->name;
-        $name_p2 = $game->player2->name;
+        $name_p1 = $game->player1->team;
+        $name_p2 = $game->player2->team;
         $val_p1 = $this->get_total( $conf_p1 );
         $val_p2 = $this->get_total( $conf_p2 );
         $score_p1 = $game->score1;
@@ -396,8 +407,19 @@ class GameController extends Controller
         }
         $msg .= "SCORE: ".$name_p1." ".$score_p1." - ".$name_p2." ".$score_p2."<br/>";
         if( $id_att<4 ) {
-        $zone = $$next_conf->$next_phase;
-        $msg .= "La zone sera donnée par ".$next_conf."->".$next_phase.", soit ".$zone."<br/>";
+            $zone = $$next_conf->$next_phase;
+            //$msg .= "La zone sera donnée par ".$next_conf."->".$next_phase.", soit ".$zone."<br/>";
+            $msg .= "La prochaine attaque sera menée dans la Zone ".$zone." de ";
+            if( $res == "win1" ) {
+                $msg .= $name_p1.".<br/>";
+            }
+            else {
+                $msg .= $name_p2.".<br/>";
+                if( $zone == 'GAUCHE' )
+                    $zone = 'DROITE';
+                else if( $zone == 'DROITE' )
+                    $zone = 'GAUCHE';
+            }
         }
         }
 
