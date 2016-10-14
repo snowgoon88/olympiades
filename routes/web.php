@@ -92,6 +92,11 @@ Route::post('_snow/167ACE845', 'Auth\RegisterController@register');
         /* $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'); */
         /* $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm'); */
         /* $this->post('password/reset', 'Auth\ResetPasswordController@reset'); */
+Route::get('chpssd', 'Auth\ChangePassword@showPasswordForm' )
+    ->middleware('auth');
+Route::post('chpssd', 'Auth\ChangePassword@updatePassword' )
+    ->middleware('auth');
+
 Auth::routes();
 
 Route::get('editteam', 'TeamController@showTeamForm')

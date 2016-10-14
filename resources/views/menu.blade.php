@@ -4,7 +4,8 @@
 	  {{ link_to('mygame', $title = "Mes parties", ['class' => 'btn btn-default']) }}
 	  {{ link_to('allgame', $title = "Toutes les parties", ['class' => 'btn btn-default']) }}
 	</div>
-	<div class="col-md-2 col-md-offset-2">
+	<div class="col-md-4 col-md-offset-2">
 	  {{ link_to('editteam', $title = "Editer l'Equipe", ['class' => 'btn btn-default']) }}
+	  {{ link_to('chpssd', $title = "Change Password", ['class' => 'btn btn-default']) }}
 	</div>
   </div>
