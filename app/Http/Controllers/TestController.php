@@ -21,6 +21,10 @@ class TestController extends Controller
         $games = Game::all();
         return view('test.game_all', ['games' => $games]);
     }
+    public function rules()
+    {
+        return view('test.rules');
+    }
     public function show_game($gid)
     {
         $game = Game::findOrFail($gid);

@@ -20,6 +20,7 @@ Route::post( 'test/addconf/{pid}/{gid}', 'TestController@add_configuration' )
     ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
 Route::get( 'test/resetgame/{gid}', 'TestController@reset_game')
     ->where('gid', '[0-9]+');
+Route::get( 'test/rules', 'TestController@rules');
 /** **********************************************************************/
 
 

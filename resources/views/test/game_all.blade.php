@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @include('test.menu')
   <div class="row">
 	<h3>Liste de toutes les  parties</h3>
 	<div class="col-md-12">
