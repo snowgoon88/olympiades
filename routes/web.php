@@ -10,6 +10,18 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+/** Test *****************************************************************/
+Route::get( 'test/allgame', 'TestController@all_game');
+Route::get( 'test/showgame/{gid}', 'TestController@show_game')
+    ->where('gid', '[0-9]+');
+Route::get( 'test/playgame/{pid}/{gid}', 'TestController@play_game_admin')
+    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+Route::post( 'test/addconf/{pid}/{gid}', 'TestController@add_configuration' )
+    ->where('pid', '[0-9]+')->where('gid', '[0-9]+');
+Route::get( 'test/resetgame/{gid}', 'TestController@reset_game')
+    ->where('gid', '[0-9]+');
+/** **********************************************************************/
+
 
 Route::get('/', function () {
     return view('welcome');

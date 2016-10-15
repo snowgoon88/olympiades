@@ -504,9 +504,10 @@ class GameController extends Controller
     }
     public function show_game($gid)
     {
-        $player = Auth::user();
+        //TEST $player = Auth::user();
         $game = Game::findOrFail($gid);
-        return view('game_show', ['game' => $game, 'player'=>$player]);
+        //TEST return view('game_show', ['game' => $game, 'player'=>$player]);
+        return view('game_show', ['game' => $game]);
     }
     
     public function reset_game($pid,$gid)
