@@ -176,7 +176,7 @@ class GameController extends Controller
             // Droite
             if( $pos == "win1" ) {
                 $msg .= $name_p1." sur sa DROITE</h4>";
-                $diff +=$this->solve_attack( $val_p1['attD'], $val_p2['attD'],
+                $diff +=$this->solve_attack( $val_p1['attD'], $val_p2['defG'],
                 $conf_p1->sfmD, $conf_p2->sfmG, $msg);
             }
             else {
@@ -348,7 +348,7 @@ class GameController extends Controller
             // Droite
             if( $pos == "win1" ) {
                 $msg .= $name_p1." sur sa DROITE</h4>";
-                $diff +=$this->solve_attack( $val_p1['attD'], $val_p2['attD'],
+                $diff +=$this->solve_attack( $val_p1['attD'], $val_p2['defG'],
                 $conf_p1->sfmD, $conf_p2->sfmG, $msg);
             }
             else {
